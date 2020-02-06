@@ -1,8 +1,12 @@
+import platform
+
+
 class Velha:
     def __init__(self):
         self._tabela = [_ for _ in range(9)]
         self._vez = True
         self._fim = False
+        self._os = platform.system()
 
     def posicionar_letra(self):
         """
@@ -14,11 +18,14 @@ class Velha:
         while not (num in self._tabela):
             num = int(Velha.pegar_letra())
         pos = int(self._tabela.index(num))
-        if self._vez == True:
-            self._tabela[pos] = 'X'
-        else:
-            self._tabela[pos] = 'O'
-        self._vez = not self._vez
+        if self._os == 'Linux':
+            if self._vez is True:
+                self._tabela[pos] = '\033[31m' + 'X' + '\033[0;0m'
+            else:
+                self._tabela[pos] = '\033[34m' + 'O' + '\033[0;0m'
+            self._vez = not self._vez
+        elif self._os == 'Windows':
+            pass
 
     def identificar_fim(self):
         if self._tabela[0] == self._tabela[4] == self._tabela[8]:
@@ -44,13 +51,13 @@ class Velha:
         self.imprimir_tabela()
 
     @staticmethod
-    def pegar_letra(self):
+    def pegar_letra():
         """
         Função para pegar a posição que o jogador quer que o seu marcador fique
         :param self: o objeto que corresponde a classe Velha
         :return: String com a posição desejada
         """
-        
+
         return input("Digite o número que corresponde a posição desejada:")
 
 
