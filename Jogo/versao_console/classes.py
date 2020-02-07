@@ -27,15 +27,41 @@ class Velha:
         elif self._os == 'Windows':
             pass
 
+    def vitoria(self):
+        self._fim = True
+        self._vez = not self._vez
+        pass
+
+    def empate(self):
+        self._fim = True
+        self._vez = "Empate"
+        pass
+
     def identificar_fim(self):
         if self._tabela[0] == self._tabela[4] == self._tabela[8]:
-            self._fim = True
+            self.vitoria()
+        elif self._tabela[2] == self._tabela[4] == self._tabela[6]:
+            self.vitoria()
+        else:
+            cont_x = 0
+            cont_y = 0
+            for x in range(2):
+                for y in range(2):
+                    if self._tabela[x] == self._tabela[x+1]:
+                        cont_x += 1
+                    if self._tabela[y] == self._tabela[x+1]:
+                        cont_y += 1
+            if cont_x == 3:
+                self.vitoria()
+            elif cont_y == 3:
+                self.vitoria()
 
     def imprimir_tabela(self):
         text = f'{self._tabela[0]}|{self._tabela[1]}|{self._tabela[2]}\n' \
                f'{self._tabela[3]}|{self._tabela[4]}|{self._tabela[5]}\n' \
                f'{self._tabela[6]}|{self._tabela[7]}|{self._tabela[8]}\n'
         print(text)
+        print(self._vez)
         pass
 
     def iniciar(self):
