@@ -52,13 +52,22 @@ class Velha:
                 print('FOI DOIS')
                 break
 
+    def imprimir_R_B(self, text1, text2):
+        if self._vez == True:
+            print('\033[31m' + text1 + '\033[0;0m')
+        else:
+            print('\033[34m' + text2 + '\033[0;0m')
+
     def imprimir_tabela(self):
         text = f'{self._tabela[0]}|{self._tabela[1]}|{self._tabela[2]}\n' \
                f'{self._tabela[3]}|{self._tabela[4]}|{self._tabela[5]}\n' \
                f'{self._tabela[6]}|{self._tabela[7]}|{self._tabela[8]}\n'
         print(text)
-        print(self._vez)
-        pass
+        if self._fim == True:
+            self.imprimir_R_B('Vermelho ganhou', 'Azul ganhou')
+        else:
+            self.imprimir_R_B('Vez do vemelho', 'Vez do azul')
+
 
     def iniciar(self):
         """
