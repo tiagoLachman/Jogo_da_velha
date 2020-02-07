@@ -42,19 +42,15 @@ class Velha:
             self.vitoria()
         elif self._tabela[2] == self._tabela[4] == self._tabela[6]:
             self.vitoria()
-        else:
-            cont_x = 0
-            cont_y = 0
-            for x in range(2):
-                for y in range(2):
-                    if self._tabela[x] == self._tabela[x+1]:
-                        cont_x += 1
-                    if self._tabela[y] == self._tabela[x+1]:
-                        cont_y += 1
-            if cont_x == 3:
+        for x in range(3):
+            if self._tabela[x] == self._tabela[x + 1] == self._tabela[x + 2]:
                 self.vitoria()
-            elif cont_y == 3:
+                print('FOI UM')
+                break
+            if self._tabela[x] == self._tabela[x + 3] == self._tabela[x + 6]:
                 self.vitoria()
+                print('FOI DOIS')
+                break
 
     def imprimir_tabela(self):
         text = f'{self._tabela[0]}|{self._tabela[1]}|{self._tabela[2]}\n' \
