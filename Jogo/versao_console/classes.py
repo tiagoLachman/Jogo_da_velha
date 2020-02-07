@@ -42,27 +42,32 @@ class Velha:
             self.vitoria()
         elif self._tabela[2] == self._tabela[4] == self._tabela[6]:
             self.vitoria()
+        for x in range(3):
+            if self._tabela[x] == self._tabela[x + 1] == self._tabela[x + 2]:
+                self.vitoria()
+                print('FOI UM')
+                break
+            if self._tabela[x] == self._tabela[x + 3] == self._tabela[x + 6]:
+                self.vitoria()
+                print('FOI DOIS')
+                break
+
+    def imprimir_R_B(self, text1, text2):
+        if self._vez == True:
+            print('\033[31m' + text1 + '\033[0;0m')
         else:
-            cont_x = 0
-            cont_y = 0
-            for x in range(2):
-                for y in range(2):
-                    if self._tabela[x] == self._tabela[x+1]:
-                        cont_x += 1
-                    if self._tabela[y] == self._tabela[x+1]:
-                        cont_y += 1
-            if cont_x == 3:
-                self.vitoria()
-            elif cont_y == 3:
-                self.vitoria()
+            print('\033[34m' + text2 + '\033[0;0m')
 
     def imprimir_tabela(self):
         text = f'{self._tabela[0]}|{self._tabela[1]}|{self._tabela[2]}\n' \
                f'{self._tabela[3]}|{self._tabela[4]}|{self._tabela[5]}\n' \
                f'{self._tabela[6]}|{self._tabela[7]}|{self._tabela[8]}\n'
         print(text)
-        print(self._vez)
-        pass
+        if self._fim == True:
+            self.imprimir_R_B('Vermelho ganhou', 'Azul ganhou')
+        else:
+            self.imprimir_R_B('Vez do vemelho', 'Vez do azul')
+
 
     def iniciar(self):
         """
